@@ -2,6 +2,7 @@ import Link from 'next/link';
 
 const AboutPage = () => {
   const onChange = e => {
+    console.log(e);
     window.ReactNativeWebView.postMessage(JSON.stringify(e));
     // console.log(e);
   };
