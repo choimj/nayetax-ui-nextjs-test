@@ -8,6 +8,12 @@ const AboutPage = () => {
   return (
     <>
       <h1>About</h1>
+      <button
+        onClick={e => {
+          window.ReactNativeWebView.postMessage('test');
+        }}
+        style={{width: '100px', height: '100px'}}
+      />
       <p>This is the about page</p>
       <input type="file" onChange={onChange} />
       <img src="https://api0.wehago.com/SynapDocViewServer/thumbnail/065f768b3e904bdfa456fa61171484e3/0" />
