@@ -3,6 +3,7 @@ import Link from 'next/link';
 const AboutPage = () => {
   const onChange = e => {
     // console.log(e.target.files);
+    window.ReactNativeWebView.postMessage('e.target.files');
     window.ReactNativeWebView.postMessage(JSON.stringify(e.target.files));
     // console.log(e);
   };
