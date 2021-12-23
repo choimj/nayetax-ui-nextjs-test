@@ -1,6 +1,24 @@
-import Head from "next/head";
+import Head from 'next/head';
+import {useEffect, useState} from 'react';
 
 export default function Home() {
+  const [auth, setauth] = useState({});
+  useEffect(() => {
+    window.addEventListener('message', event => {
+      if (event.data.id === 'nahago') {
+      }
+    });
+  }, []);
+  const [isLogin, setIsLogin] = useState(false);
+  const [auth, setAuth] = useState({});
+  const [id, setId] = useState('sadb0101');
+  const [pw, setPw] = useState('3307coo*@*');
+  const _handleLogin = () => {
+    login(id, pw).then(res => {
+      setAuth(res.resultData);
+      setIsLogin(true);
+    });
+  };
   return (
     <div className="container">
       <Head>
@@ -9,9 +27,7 @@ export default function Home() {
       </Head>
 
       <main>
-        <h1 className="title">
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+        <h1 className="title">{auth.portal_id}</h1>
 
         <p className="description">
           Get started by editing <code>pages/index.js</code>
@@ -19,11 +35,7 @@ export default function Home() {
 
         <div className="grid">
           <a href="/about" className="card">
-            <h3>About &rarr;</h3>
-          </a>
-
-          <a href="/examples" className="card">
-            <h3>Examples &rarr;</h3>
+            <h3>About</h3>
           </a>
         </div>
       </main>
@@ -113,8 +125,8 @@ export default function Home() {
           border-radius: 5px;
           padding: 0.75rem;
           font-size: 1.1rem;
-          font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New,
-            monospace;
+          font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
+            DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
         }
 
         .grid {
@@ -124,13 +136,13 @@ export default function Home() {
           flex-wrap: wrap;
 
           max-width: 800px;
-          margin-top: 3rem;
+          margin-top: 1rem;
         }
 
         .card {
           margin: 1rem;
           flex-basis: 45%;
-          padding: 1.5rem;
+          padding: 1rem;
           text-align: left;
           color: inherit;
           text-decoration: none;
@@ -174,8 +186,9 @@ export default function Home() {
         body {
           padding: 0;
           margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
-            Helvetica Neue, sans-serif;
+          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+            sans-serif;
         }
 
         * {

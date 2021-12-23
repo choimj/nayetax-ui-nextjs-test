@@ -1,10 +1,15 @@
 import Link from 'next/link';
+import {useState} from 'react';
 
 const AboutPage = () => {
+  const [txt, setTxt] = useState('initialState');
   const onChange = e => {
-    // console.log(e.target.files);
-    window.ReactNativeWebView.postMessage('e.target.files');
-    // window.ReactNativeWebView.postMessage(JSON.stringify(e.target.files));
+    debugger;
+    
+    // window.ReactNativeWebView.postMessage('e.target.files');
+    // setTxt(e.target.files);
+    setTxt(JSON.stringify(e.target.files));
+    // window.ReactNativeWebView.postMessage(JSON.stringify(e.target));
     // console.log(e);
   };
   return (
@@ -16,9 +21,9 @@ const AboutPage = () => {
         }}
         style={{width: '100px', height: '100px'}}
       />
-      <p>This is the about page</p>
+      <p>{txt}</p>
       <input type="file" onChange={onChange} />
-      <img src="https://api0.wehago.com/SynapDocViewServer/thumbnail/065f768b3e904bdfa456fa61171484e3/0" />
+
       <p>
         <Link href="/">
           <a>Go home</a>
