@@ -1,8 +1,9 @@
 import Head from 'next/head';
 import {useEffect, useState} from 'react';
+import {login} from '../api';
 
 export default function Home() {
-  const [auth, setauth] = useState({});
+  // const [auth, setauth] = useState({});
   useEffect(() => {
     window.addEventListener('message', event => {
       if (event.data.id === 'nahago') {
@@ -11,8 +12,8 @@ export default function Home() {
   }, []);
   const [isLogin, setIsLogin] = useState(false);
   const [auth, setAuth] = useState({});
-  const [id, setId] = useState('sadb0101');
-  const [pw, setPw] = useState('3307coo*@*');
+  const [id, setId] = useState('');
+  const [pw, setPw] = useState('');
   const _handleLogin = () => {
     login(id, pw).then(res => {
       setAuth(res.resultData);
@@ -27,17 +28,34 @@ export default function Home() {
       </Head>
 
       <main>
-        <h1 className="title">{auth.portal_id}</h1>
-
-        <p className="description">
-          Get started by editing <code>pages/index.js</code>
-        </p>
-
-        <div className="grid">
-          <a href="/about" className="card">
-            <h3>About</h3>
-          </a>
-        </div>
+        {isLogin ? (
+          <div className="grid">
+            <a href="/about" className="card">
+              <h3>About</h3>
+            </a>
+            {/* 위의 a 태그 복사해서 디렉토리 pages에 about.js 마냥 만들어서 퍼블리싱 된 애들 데리고 코드를 짜면 됩니다 */}
+            {/* 매번 로그인 하는게 귀찮다면 auth에 담기는 정보들 하드코딩으로 박아놓고 개발하면 토큰 사용은 쉬울겁니다 */}
+          </div>
+        ) : (
+          <>
+            <span style={{margin: 10}}>아이디</span>
+            <input
+              style={{margin: 10}}
+              onChange={e => setId(e.target.value)}
+              value={id}
+            />
+            <span style={{margin: 10}}>비밀번호</span>
+            <input
+              style={{margin: 10}}
+              onChange={e => setPw(e.target.value)}
+              value={pw}
+            />
+            <button
+              style={{width: 50, height: 50}}
+              onClick={_handleLogin}
+            ></button>
+          </>
+        )}
       </main>
 
       <footer>
