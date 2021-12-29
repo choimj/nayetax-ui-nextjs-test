@@ -29,17 +29,7 @@ class MyDocument extends Document {
           <meta name="author" content="Douzone" />
           <meta name="keywords" content="" />
           <meta name="description" content="" />
-          {MODE === "PRODUCTION" ? (
-            <></>
-          ) : (
-            <>
-              <link
-                rel="stylesheet"
-                type="text/css"
-                href="http://172.16.114.131/css/svc/ctm.css"
-              />
-            </>
-          )}
+          {MODE === "PRODUCTION" ? <></> : <></>}
         </Head>
         <body>
           <Main />
